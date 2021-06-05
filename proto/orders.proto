@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package orders;
+
+import "google/protobuf/empty.proto";
+
+message OrderItem {
+  string document = 1;
+  double amount = 2;
+}
+
+message OrderItemList {
+  repeated OrderItem items = 1;
+}
+
+message Order {
+  string id = 1;
+  OrderItemList items = 2;
+  double total = 3;
+}
+
+service Orders {
+  rpc List (google.protobuf.Empty) returns (Order) {}
+}
